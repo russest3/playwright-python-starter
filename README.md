@@ -1,9 +1,43 @@
-## Demo code for my Pluralsight course: Playwright Foundations with Python
+# Playwright - Python
 
-Starting a new end-to-end test automation project? This course will teach you how to test web applications using the open-source tool Playwright with Python. Try it and never look back!
+- Versions used in training
+    - Playwright 1.46
+    - Python 3.12
 
-> [!IMPORTANT]
-> This is a "starter" repo, containing only the minimal setup to enable learners to code along with the video course.
->
+Very important to use a Virtual Environment!
 
-You can find all my courses at: https://www.pluralsight.com/authors/andrejs-doronins
+<pre>srussel0@development:~/repos/python-playwright$ source .venv/local/bin/activate
+pip install pytest-playwright
+playwright install
+</pre>
+
+Run playwright scripts using pytest:
+
+<pre>pytest .\demo.py</pre>
+
+pytest.ini file for configuration:
+<pre>
+[pytest]
+markers = 
+    smoke: part of the smoke test suite
+addopts = --headed --browser chromium --browser firefox --screenshot only-on-failure --numprocesses auto
+</pre>
+
+Error running playwright install:
+<pre>
+║ Host system is missing dependencies to run browsers. ║
+║ Missing libraries:                                   ║
+║     libgstcodecparsers-1.0.so.0                      ║
+║     libavif.so.13 
+</pre>
+
+Running an html server using python:
+<pre>
+# Important to run from web directory!
+srussel0@development:~/repos/python-playwright/web$ python -m http.server &  # runs on port 8000, if you need a different port:
+srussel0@development:~/repos/python-playwright/web$ python -m http.server 3000 &
+Then navigate browser to http://localhost:8000
+</pre>
+
+pytest discovery conventions:
+- pytest searches directories containing test_*.py or *_test.py files
