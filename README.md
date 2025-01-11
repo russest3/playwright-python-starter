@@ -4,11 +4,14 @@
     - Playwright 1.46
     - Python 3.12
 
+https://github.com/microsoft/playwright-python
+
 Very important to use a Virtual Environment!
 
 <pre>srussel0@development:~/repos/python-playwright$ source .venv/local/bin/activate
-pip install pytest-playwright
-playwright install
+sudo apt-get install libgstreamer1.0-0 gstreamer1.0-plugins-base gstreamer1.0-plugins-good gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly gstreamer1.0-libav
+pip install -r requirements.txt
+playwright install  # Installs browsers
 </pre>
 
 Run playwright scripts using pytest:
@@ -41,3 +44,15 @@ Then navigate browser to http://localhost:8000
 
 pytest discovery conventions:
 - pytest searches directories containing test_*.py or *_test.py files
+
+Find by iframe:
+
+use .frame_locator('#foo')
+
+## Using Playwright codegen
+<pre>
+$ playwright codegen http://localhost:8000
+</pre>
+
+This opens the webpage and Playwright inspector and lets you dynamically change the code by changing elements in the page
+
