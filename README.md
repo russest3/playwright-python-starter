@@ -87,6 +87,62 @@ def global_setup_available_everywhere():
 </pre>
 
 
+### Understanding different Python modules
+- pytest is the foundation used to run ANY kind of test
+- playwright is to perform actions
+- pytest-playwright is used to manipulate page, browser, and other fixtures
+    - Markers are unique to playwright
+    - CLI flags and pytest.ini options are unique to playwright
+
+### Markers
+<pre>
+$ pytest --markers # Lists all markers
+$ pytest -m smoke # Test the smoke marker defined in pytest.ini
+</pre>
+
+### Pytest CLI Options
+<pre>
+$ pytest test.py --headed --browser firefox --browser webkit --slowmo 300 --screenshot only-on-failure --base-url http://localhost:8000/
+</pre>
+
+### Order of Prescedence
+- Code > CLI > Config
+- Code overrides CLI options
+- CLI options overrides config.ini options
+
+### Running tests in parallel
+<pre>
+# Install the pytest-xdist Python module
+$ pip install pytest-xdist
+# Enable parallelism with the -n flag (number of processes.  Cannot exceed number of CPUS!)
+$ pytest -n 2 test.py
+# or use auto keyword
+$ pytest -n auto test.py
+</pre>
+
+### Trace Viewer
+- Traces:
+    - Actions
+    - Screenshots
+    - Logs
+    - Console messages
+    - HTTP traffic
+    - Other Metadata
+
+<pre>
+$ pytest --tracing on test.py # or
+$ pytest --tracing retain-on-failure test.py
+Creates a test-results folder with a .zip file inside with all trace info
+
+$ playwright show-trace trace.zip
+</pre>
+
+### Further Learning
+- Authentication
+    - UI: Username + Password
+    - HTTP: set token in a header
+- Saving authentication state with a json file
+
 
 
 
