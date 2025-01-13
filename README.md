@@ -6,6 +6,14 @@
 
 https://github.com/microsoft/playwright-python
 
+<pre>
+PACKAGES:
+pip install playwright #To perform clicks, etc.
+pip install pytest #To run any kind of test
+
+pip install pytest-playwrite  # Installs both packages, PLUS extra functionality!
+</pre>
+
 Very important to use a Virtual Environment!
 
 <pre>srussel0@development:~/repos/python-playwright$ source .venv/local/bin/activate
