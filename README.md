@@ -24,6 +24,9 @@ pytest.ini file for configuration:
 markers = 
     smoke: part of the smoke test suite
 addopts = --headed --browser chromium --browser firefox --screenshot only-on-failure --numprocesses auto
+
+# To execute pytest using markers:
+pytest -m smoke # Pytest will run only those markers with the specified marker
 </pre>
 
 Error running playwright install:
@@ -55,4 +58,27 @@ $ playwright codegen http://localhost:8000
 </pre>
 
 This opens the webpage and Playwright inspector and lets you dynamically change the code by changing elements in the page
+
+### Dialogs and Alerts
+- Playwright dismisses dialogs by default
+
+### Screenshots and seeing print statements
+<pre>
+$ pytest --screenshot only-on-failure test.py -rP #always run with -rP to see print statement
+</pre>
+
+### Session Scope - conftest.py ####
+- move all session scope to a file conftest.py  # Must be named this, applies to current directory and all subdirectories.  Put in tests folder to apply to all tests
+- It is normal to have multiple conftest.py files in a project
+<pre>
+import pytest
+
+@pytest.fixture(scope='session', autouse=True) # Now runs once before all tests
+def global_setup_available_everywhere():
+    print('Global setup for entire test run of ALL applicable tests')
+</pre>
+
+
+
+
 
